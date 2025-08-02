@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>สุขสันต์วันเกิด 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Kanit', sans-serif;
+      text-align: center;
+      background: black;
+      color: white;
+    }
+
+    #login {
+      margin-top: 20%;
+    }
+
+    #birthday {
+      display: none;
+      position: relative;
+      min-height: 100vh;
+      background: #000;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #fff;
+      animation: bounce 1s infinite;
+      margin-top: 30px;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 1.2em;
+      border-radius: 10px;
+      border: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background-color: #ff4081;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    .gallery {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      z-index: 1;
+      position: relative;
+    }
+
+    .gallery img {
+      width: 250px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #fff;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    .slider {
+  position: relative;
+  max-width: 90%;
+  margin: 50px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide {
+  max-width: 300px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px #fff;
+  display: none;
+  transition: transform 0.5s ease;
+}
+
+.prev, .next {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  font-size: 2em;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  margin: 0 20px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.message {
+  font-size: 1.5em;
+  color: #ffccff;
+  margin-top: 10px;
+  animation: fadeIn 2s ease;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.memory-title {
+  font-size: 2em;
+  color: #ff99cc;
+  margin-top: 40px;
+  animation: fadeIn 2s ease;
+}
+
+.slide {
+  animation: popUp 0.5s ease;
+}
+
+@keyframes popUp {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- หน้ารหัสผ่าน -->
+  <div id="login">
+    <h2>ใส่รหัสลับเพื่อดูคำอวยพร 💖</h2>
+    <input type="password" id="code" placeholder="ใส่รหัสที่นี่">
+    <button onclick="checkCode()">ตกลง</button>
+  </div>
+
+  <iframe
+  id="ytplayer"
+  type="text/html"
+  width="0"
+  height="0"
+  frameborder="0"
+  allow="autoplay"
+></iframe>
+
+
+
+  <!-- หน้าอวยพร -->
+  <div id="birthday">
+    <canvas id="canvas"></canvas>
+    <h1>🎉 Happy Birthday! 🎂</h1>
+<p class="message">On your birthday, I hope you get whatever you desire.  
+Wishing you a very happy birthday sweetheart!</p>
+
+<div class="memory-title">💕 Memories of You 💕</div>
+<div class="slider">
+  <button class="prev" onclick="changeSlide(-1)">❮</button>
+  <img class="slide" src="earn01.jpg" alt="ภาพ 1">
+  <img class="slide" src="earn02.jpg" alt="ภาพ 2">
+  <img class="slide" src="earn03.jpg" alt="ภาพ 3">
+  <button class="next" onclick="changeSlide(1)">❯</button>
+</div>
+     
+  </div>
+  <audio id="bgmusic" src="bg-music.mp3" autoplay loop hidden></audio>
+
+
+  <script>
+function checkCode() {
+  const input = document.getElementById('code').value;
+  if (input === "110841") {
+    document.getElementById('login').style.display = "none";
+    document.getElementById('birthday').style.display = "block";
+    document.getElementById('bgmusic').play(); // เล่นเพลง
+    startFireworks();
+    startSlider(); // เริ่มแสดงรูป
+  } else {
+    alert("รหัสไม่ถูกต้อง ลองใหม่อีกครั้งนะครับ");
+  }
+  if (input === "110841") {
+  document.getElementById('login').style.display = "none";
+  document.getElementById('birthday').style.display = "block";
+  document.getElementById('bgmusic').play(); // เล่น mp3 (ถ้ามี)
+  
+  // เริ่มเล่นเพลงจาก YouTube หลังจากใส่รหัสผ่าน
+  document.getElementById('ytplayer').src = "https://www.youtube.com/embed/THHXBY75aqw?autoplay=1&loop=1&playlist=THHXBY75aqw&mute=0";
+
+  startFireworks();
+  startSlider();
+}
+
+}
+
+
+    // เอฟเฟกต์พลุ
+    function startFireworks() {
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const fireworks = [];
+
+      function createFirework() {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height / 2;
+        const count = 80;
+        for (let i = 0; i < count; i++) {
+          fireworks.push({
+            x: x,
+            y: y,
+            angle: Math.random() * 2 * Math.PI,
+            speed: Math.random() * 5 + 2,
+            radius: 2,
+            alpha: 1,
+            color: `hsl(${Math.random() * 360}, 100%, 70%)`
+          });
+        }
+      }
+
+      function updateFireworks() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        fireworks.forEach((f, index) => {
+          f.x += Math.cos(f.angle) * f.speed;
+          f.y += Math.sin(f.angle) * f.speed;
+          f.alpha -= 0.01;
+          if (f.alpha <= 0) fireworks.splice(index, 1);
+          ctx.beginPath();
+          ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
+          ctx.fillStyle = f.color;
+          ctx.globalAlpha = f.alpha;
+          ctx.fill();
+          ctx.globalAlpha = 1;
+        });
+        if (Math.random() < 0.05) createFirework();
+        requestAnimationFrame(updateFireworks);
+      }
+
+      createFirework();
+      updateFireworks();
+    }
+
+  let currentSlide = 0;
+  const slides = document.getElementsByClassName("slide");
+
+  function showSlide(index) {
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slides[index].style.display = "block";
+  }
+
+  function changeSlide(n) {
+    currentSlide += n;
+    if (currentSlide >= slides.length) currentSlide = 0;
+    if (currentSlide < 0) currentSlide = slides.length - 1;
+    showSlide(currentSlide);
+  }
+
+  // เริ่มแสดงรูปแรกหลังปลดล็อก
+  function startSlider() {
+    showSlide(currentSlide);
+  }
+  </script>
+</body>
+</html>
