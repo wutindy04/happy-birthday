@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>สุขสันต์วันเกิด 💖</title>
+
+  <!-- เพิ่มฟอนต์ Itim จาก Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet" />
+
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Kanit', sans-serif;
+      font-family: 'Itim', cursive;
       text-align: center;
-      background: black;
-      color: white;
+      background: linear-gradient(135deg, #fce4ec, #f3e5f5);
+      color: #6a1b9a;
     }
 
     #login {
@@ -21,21 +25,27 @@
       display: none;
       position: relative;
       min-height: 100vh;
-      background: #000;
+      background: linear-gradient(to bottom, #fce4ec, #f3e5f5);
       overflow: hidden;
       padding-top: 80px;
     }
 
     h1 {
       font-size: 3em;
-      color: #fff;
+      color: #880e4f;
       animation: bounce 1s infinite;
       margin-top: 30px;
+      text-shadow: 1px 1px 5px #f48fb1;
     }
 
     @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
     }
 
     canvas {
@@ -49,18 +59,32 @@
       padding: 10px;
       font-size: 1.2em;
       border-radius: 10px;
-      border: none;
+      border: 2px solid #ce93d8;
+      outline: none;
+      transition: border-color 0.3s ease;
+      font-family: 'Itim', cursive;
+    }
+
+    input:focus {
+      border-color: #ba68c8;
     }
 
     button {
       padding: 10px 20px;
       font-size: 1.2em;
-      background-color: #ff4081;
+      background-color: #ce93d8;
       color: white;
       border: none;
       border-radius: 10px;
       margin-left: 10px;
       cursor: pointer;
+      box-shadow: 0 4px 6px rgba(206, 147, 216, 0.6);
+      transition: background-color 0.3s ease;
+      font-family: 'Itim', cursive;
+    }
+
+    button:hover {
+      background-color: #ab47bc;
     }
 
     .gallery {
@@ -76,85 +100,95 @@
     .gallery img {
       width: 250px;
       border-radius: 15px;
-      box-shadow: 0 0 15px #fff;
+      box-shadow: 0 0 15px #ce93d8;
       transition: transform 0.3s ease;
     }
 
     .gallery img:hover {
       transform: scale(1.05);
     }
+
     .slider {
-  position: relative;
-  max-width: 90%;
-  margin: 50px auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+      position: relative;
+      max-width: 90%;
+      margin: 50px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-.slide {
-  max-width: 300px;
-  border-radius: 20px;
-  box-shadow: 0 0 20px #fff;
-  display: none;
-  transition: transform 0.5s ease;
-}
+    .slide {
+      max-width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #ce93d8;
+      display: none;
+      transition: transform 0.5s ease;
+      animation: popUp 0.5s ease;
+    }
 
-.prev, .next {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: none;
-  font-size: 2em;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 50%;
-  margin: 0 20px;
-}
+    .prev,
+    .next {
+      background-color: rgba(206, 147, 216, 0.3);
+      color: #6a1b9a;
+      border: none;
+      font-size: 2em;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 50%;
+      margin: 0 20px;
+      transition: background-color 0.3s ease;
+    }
 
-.prev:hover, .next:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-}
+    .prev:hover,
+    .next:hover {
+      background-color: rgba(171, 71, 188, 0.6);
+      color: white;
+    }
 
-.message {
-  font-size: 1.5em;
-  color: #ffccff;
-  margin-top: 10px;
-  animation: fadeIn 2s ease;
-  max-width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.6;
-}
+    .message {
+      font-size: 1.5em;
+      color: #ba68c8;
+      margin-top: 10px;
+      animation: fadeIn 2s ease;
+      max-width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+      text-shadow: 1px 1px 2px #fff;
+    }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-.memory-title {
-  font-size: 2em;
-  color: #ff99cc;
-  margin-top: 40px;
-  animation: fadeIn 2s ease;
-}
+    .memory-title {
+      font-size: 2em;
+      color: #ce93d8;
+      margin-top: 40px;
+      animation: fadeIn 2s ease;
+      text-shadow: 1px 1px 3px #f48fb1;
+    }
 
-.slide {
-  animation: popUp 0.5s ease;
-}
-
-@keyframes popUp {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
+    @keyframes popUp {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <!-- หน้ารหัสผ่าน -->
