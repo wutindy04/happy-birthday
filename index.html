@@ -268,7 +268,7 @@ Wishing you a very happy birthday sweetheart!</p>
 </div>
      
   </div>
-  <audio id="bgmusic" src="bg-music.mp3" autoplay loop hidden></audio>
+ <audio id="bgmusic" src="bg-music.mp3" autoplay loop hidden></audio>
 
 
   <script>
@@ -277,24 +277,12 @@ function checkCode() {
   if (input === "110841") {
     document.getElementById('login').style.display = "none";
     document.getElementById('birthday').style.display = "block";
-    document.getElementById('bgmusic').play(); // เล่นเพลง
+    document.getElementById('bgmusic').play(); // เล่น mp3
     startFireworks();
-    startSlider(); // เริ่มแสดงรูป
+    startSlider();
   } else {
     alert("รหัสไม่ถูกต้อง ลองใหม่อีกครั้งนะครับ");
   }
-  if (input === "110841") {
-  document.getElementById('login').style.display = "none";
-  document.getElementById('birthday').style.display = "block";
-  document.getElementById('bgmusic').play(); // เล่น mp3 (ถ้ามี)
-  
-  // เริ่มเล่นเพลงจาก YouTube หลังจากใส่รหัสผ่าน
-  document.getElementById('ytplayer').src = "bg-music.mp3";
-
-  startFireworks();
-  startSlider();
-}
-
 }
 
 
